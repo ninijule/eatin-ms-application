@@ -1,6 +1,5 @@
 import Application from "../repositories/application";
 import DeleteApplicationRequest from "../types/requests/deleteApplicationRequest";
-import { v4 } from 'uuid';
 
 export default async (request: DeleteApplicationRequest) => {
     try {
