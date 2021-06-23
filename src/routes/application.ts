@@ -22,9 +22,9 @@ router.delete(
 );
 
 router.get(
-  "/:id",
+  "/",
 
-  applicationController.getApplication
+  applicationController.getAllApplication
 );
 
 export default router;

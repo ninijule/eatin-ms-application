@@ -8,8 +8,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(3000, () => {
-  console.log("The application is listening on port 3000!");
+app.listen(3001, () => {
+  console.log("The application is listening on port 3001!");
 });
 
 routers.forEach((router: RouterConfig) => {
