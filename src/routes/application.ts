@@ -7,9 +7,9 @@ const router = express.Router();
 router.post(
   "/",
 
-  body("email").isEmail().normalizeEmail().trim().escape(),
+  body("name").escape().isLength({ min: 1, max: 50 }),
 
-  body("name").trim().escape(),
+  body("description").escape().isLength({ min: 0, max: 255 }),
 
   applicationController.createApplication
 );

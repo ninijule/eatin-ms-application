@@ -1,7 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import RouterConfig from "./types/utils/routerConfig";
-
 import routers from "./routes";
 
 const app = express();
