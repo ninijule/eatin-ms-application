@@ -14,4 +14,11 @@ router.post(
   applicationController.createApplication
 );
 
+
+router.delete(
+  "/:id",
+
+  applicationController.deleteApplication
+);
+
 export default router;
