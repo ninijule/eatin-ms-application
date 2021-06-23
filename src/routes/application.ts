@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator";
-import userController from "../controller/userController";
+import applicationController from "../controller/applicationController";
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post(
 
   body("name").trim().escape(),
 
-  userController.addUser
+  applicationController.createApplication
 );
 
 export default router;

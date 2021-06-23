@@ -1,9 +1,10 @@
 import RouterConfig from "../types/utils/routerConfig";
-import userRouter from "./users";
+import applicationRouter from "./application";
 
-const user: RouterConfig = {
-  router: userRouter,
-  path: "/users",
+const application: RouterConfig = {
+  router: applicationRouter,
+  path: "/application",
 };
 
-export default [user];
+
+export default [application];
