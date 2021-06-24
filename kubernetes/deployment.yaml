@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eatin-ms-application-deployment
+  labels:
+    app: eatin-ms-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eatin-ms-application
+  template:
+    metadata:
+      labels:
+        app: eatin-ms-application
+    spec:
+      containers:
+        - name: eatin-ms-application
+          image: eatin-ms-application
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: mongo-root-username
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: mongo-root-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eatin-ms-application-service
+spec:
+  selector:
+    app: eatin-ms-application
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
