@@ -7,6 +7,8 @@ import CreateApplicationRequest from "../types/requests/createApplicationRequest
 import DeleteApplicationRequest from "../types/requests/deleteApplicationRequest";
 import GetApplicationRequest from "../types/requests/getApplicationRequest";
 import GetAllApplicationRequest from "../types/requests/getAllApplicationRequest";
+import UpdateApplicationRequest from "../types/requests/updateApplicationRequest";
+import updateApplication from "../use_cases/updateApplication";
 
 
 export default {
@@ -68,7 +70,22 @@ export default {
 
     return res.status(200).json(await getAllApplication(request));
 
-  }
+  },
+  updateApplication: async (req: any, res:any) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const request: UpdateApplicationRequest = {
+      id: req.params.id,
+      name: req.body.name,
+      description : req.body.description
+    }
 
+    if(await updateApplication(request)){
+      return res.sendStatus(200);
+    }
+    return res.sendStatus(404);
+  }
 
 };
