@@ -14,7 +14,6 @@ router.post(
   applicationController.createApplication
 );
 
-
 router.delete(
   "/:id",
 
@@ -24,12 +23,11 @@ router.delete(
 router.get(
   "/",
 
-  applicationController.getAllApplication
+  applicationController.getAllApplicationsOrSearch
 );
 
-
 router.put(
-  "/:id", 
+  "/:id",
 
   body("name").escape().isLength({ min: 1, max: 50 }),
 
