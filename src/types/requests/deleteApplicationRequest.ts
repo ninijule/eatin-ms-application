@@ -1,3 +1,4 @@
 export default interface DeleteApplicationRequest {
-    id: String
+  id: String;
+  profileId: String;
 }

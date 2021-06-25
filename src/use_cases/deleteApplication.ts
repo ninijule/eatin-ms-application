@@ -1,12 +1,13 @@
 import Application from "../repositories/application";
+import NotAuthorizedError from "../types/errors/notAuthorizedError";
 import DeleteApplicationRequest from "../types/requests/deleteApplicationRequest";
 
 export default async (request: DeleteApplicationRequest) => {
-    try {
-        await Application.findByIdAndDelete(request.id);
-        return true;
-    } catch (error) {
-        return false;
-    }
+  const application = await Application.findById(request.id);
 
+  if (application.profileId != request.profileId) {
+    throw new NotAuthorizedError();
+  }
+
+  await application.delete();
 };

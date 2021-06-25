@@ -1,3 +1,4 @@
 export default interface GetApplicationRequest {
-    id: String
+  id: String;
+  profileId: String;
 }

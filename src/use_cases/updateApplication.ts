@@ -1,16 +1,15 @@
 import Application from "../repositories/application";
+import NotAuthorizedError from "../types/errors/notAuthorizedError";
 import UpdateApplicationRequest from "../types/requests/updateApplicationRequest";
 
 export default async (request: UpdateApplicationRequest) => {
+  const application = await Application.findById(request.id);
 
-    try {
-        const application = await Application.findById(request.id);
-        application.name = request.name;
-        application.description = request.description;
-        application.save();
-        return true;
-    } catch (error) {
-        return false;
-    }
+  if (application.profileId != request.profileId) {
+    throw new NotAuthorizedError();
+  }
 
-}
+  application.name = request.name;
+  application.description = request.description;
+  application.save();
+};

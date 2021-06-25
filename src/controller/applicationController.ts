@@ -54,10 +54,7 @@ export default {
         profileId: JSON.parse(<string>req.headers.user).id,
       };
 
-      if (await deleteApplication(request)) {
-        return res.sendStatus(204);
-      }
-      return res.sendStatus(404);
+      return res.sendStatus(204);
     } catch (error) {
       next(error);
     }
@@ -113,9 +110,6 @@ export default {
       };
       return res.status(200).json(await getAllApplications(request));
     } catch (error) {
-      if (!(error instanceof BaseError)) {
-        next(BaseError.fromError(error));
-      }
       next(error);
     }
   },

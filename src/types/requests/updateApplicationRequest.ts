@@ -1,5 +1,6 @@
 export default interface UpdateApplicationRequest {
-    id: String,
-    name: String,
-    description: String
-} 
+  id: String;
+  name: String;
+  description: String;
+  profileId: String;
+}
