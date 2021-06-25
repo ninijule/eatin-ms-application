@@ -21,6 +21,12 @@ router.delete(
 );
 
 router.get(
+  "/:id",
+
+  applicationController.getApplication
+);
+
+router.get(
   "/",
 
   applicationController.getAllApplicationsOrSearch
