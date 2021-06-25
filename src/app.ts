@@ -8,10 +8,17 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(3000, () => {
-  console.log("The application is listening on port 3000!");
-});
-
 routers.forEach((router: RouterConfig) => {
   app.use(router.path, router.router);
+});
+
+app.use((err: any, req: any, res: any, next: any) => {
+  return res.status(err.code).send({
+    message: err.message,
+    details: err.details,
+  });
+});
+
+app.listen(3000, () => {
+  console.log("The application is listening on port 3000!");
 });
