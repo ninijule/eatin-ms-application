@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eatin-ms-application
-          image: eatin-ms-application
+          image: eatin.azurecr.io/eatin-ms-application
           ports:
             - containerPort: 3000
           env:
