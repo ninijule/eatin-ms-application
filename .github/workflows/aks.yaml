@@ -13,7 +13,7 @@ jobs:
   Deploy-To-AKS:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout API
+      - name: Checkout microservice
         uses: actions/checkout@v2
 
       - name: Connect to ACR
