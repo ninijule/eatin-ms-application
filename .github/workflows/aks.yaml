@@ -2,7 +2,7 @@ name: Deploy to AKS
 on:
   push:
     branches:
-      - cicd
+      - main
 env:
   REGISTRY_NAME: eatin
   APP_NAME: eatin-ms-application
@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Build gateway image and push to registry
+      - name: Build microservice image and push to registry
         run: |
           docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
           docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
