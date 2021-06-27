@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import RouterConfig from "./types/utils/routerConfig";
 import routers from "./routes";
 import BaseError from "./types/errors/baseError";
+import { Request, Response, NextFunction } from "express";
 
 const app = express();
 app.use(cookieParser());
@@ -13,7 +14,7 @@ routers.forEach((router: RouterConfig) => {
   app.use(router.path, router.router);
 });
 
-app.use((err: any, req: any, res: any, next: any) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   if (!(err instanceof BaseError)) {
     err = BaseError.fromError(err);
   }
